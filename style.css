@@ -1,0 +1,238 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #ffdde1);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #e91e63;
+    margin-bottom: 35px;
+    font-size: 2.5em;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    position: relative;
+    min-height: 60px;
+}
+
+button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+}
+
+#yesButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#yesButton:hover {
+    background-color: #66bb6a;
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+}
+
+#noButton {
+    background-color: #f44336;
+    color: white;
+    position: absolute;
+    transition: top 0.3s ease-in-out, left 0.3s ease-in-out, transform 0.2s ease;
+}
+
+#noButton:hover {
+   transform: scale(1.05);
+   box-shadow: 0 6px 15px rgba(244, 67, 54, 0.4);
+}
+
+#message {
+    margin-top: 40px;
+    color: #e91e63;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInMessage 1s ease forwards 0.5s;
+}
+
+@keyframes fadeInMessage {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#message h2 {
+    font-size: 2.2em;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+#hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    opacity: 0;
+    transform: rotate(-45deg);
+    animation: floatUp 4s ease-in forwards;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: 10px;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(-45deg) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(-45deg) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Havai Fişek Animasyonları */
+.firework {
+    position: absolute;
+    pointer-events: none;
+}
+
+.firework-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+    transform-origin: center;
+}
+
+@keyframes explode {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(var(--final-y)) translateX(var(--final-x)) scale(0.1);
+        opacity: 0;
+    }
+}
+
+/* Konfeti Efekti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confettiFall 4s ease-out forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Mesaj için özel animasyon */
+#message.celebration {
+    animation: celebrate 0.5s ease-out forwards, glow 2s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes celebrate {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(233, 30, 99, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(233, 30, 99, 0.8),
+                     0 0 30px rgba(233, 30, 99, 0.6),
+                     0 0 40px rgba(233, 30, 99, 0.4);
+    }
+} 
